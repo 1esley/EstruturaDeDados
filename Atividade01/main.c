@@ -1,5 +1,12 @@
 #include <stdio.h>
 
+int getIndex(int linhas, int colunas, int posL, int posC) {
+    if (posL <= linhas && posC <= colunas && posL > 0 && posC >0) {
+        return (posL - 1) * colunas + (posC - 1);
+    }
+    return -999;
+}
+
 //Zerar
 void zerarMatriz(int vet[], int linhas, int colunas) {
     for (int i = 0; i < linhas * colunas; i++){   
@@ -7,20 +14,11 @@ void zerarMatriz(int vet[], int linhas, int colunas) {
     }   
 }
 
-//Mostrar
-void mostarMatriz(int vet[], int linhas, int colunas){
-    for (int i = 0; i < linhas; i++){   
-        for (int j = 0; j < colunas; j++){
-            printf("%d ", vet[i * colunas + j]);
-        }
-        printf(" \n");
-    }
-}
-
 //Adicionar elemento
 void adicionarElemento(int vet[], int linhas, int colunas, int posL, int posC, int valor) {
-    if (posL <= linhas && posC <= colunas && posL > 0 && posC > 0){
-        vet[(posL - 1) * colunas + (posC - 1)] = valor;
+    if (getIndex(linhas, colunas, posL, posC) != -999){
+        int index = getIndex(linhas, colunas, posL, posC);
+        vet[index] = valor;
     }
     else {
         if (posL > linhas && posC > colunas) {printf("Posicao invalida. Linha %d e coluna %d nao existem.\n", posL, posC);} 
@@ -32,22 +30,40 @@ void adicionarElemento(int vet[], int linhas, int colunas, int posL, int posC, i
 
 //Buscar elemento
 int buscarElemento(int vet[], int linhas, int colunas, int posL, int posC){
-    if (posL <= linhas && posC <= colunas && posL > 0 && posC > 0)
-    {
-        return vet[(posL -1) * colunas + (posC - 1)];
+    if (getIndex(linhas, colunas, posL, posC) != -999){
+        int index = getIndex(linhas, colunas, posL, posC);
+        return vet[index];
     } else {
         if (posL > linhas && posC > colunas) {printf("Posicao invalida. Linha %d e coluna %d nao existem.\n", posL, posC);} 
         else if (posL > linhas) {printf("Posicao invalida. Linha %d nao existe.\n", posL);} 
         else if (posC > colunas) {printf("Posicao invalida. Coluna %d nao existe.\n", posC);}
-        else {printf("Posicao invalida");}
+        else {printf("Posicao invalida \n");}
         return -999;
+    }
+}
+
+//Mostrar
+void mostarMatriz(int vet[], int linhas, int colunas){
+    for (int i = 1; i < linhas + 1; i++){   
+        for (int j = 1; j < colunas + 1; j++){
+            printf("%d ", buscarElemento(vet, linhas, colunas, i, j));
+        }
+        printf(" \n");
     }
 }
 
 //Somar
 void somarMatrizes(int vet1[], int vet2[], int vet3[], int linhas, int colunas){
-    for (int i = 0; i < linhas * colunas; i++){
-        vet3[i] = vet1[i] + vet2[i];
+    for (int i = 1; i < linhas + 1; i++){
+        for (int j = 1; j < colunas + 1; j++){
+            int eleVet1 = buscarElemento(vet1, linhas, colunas, i, j);
+            int eleVet2 = buscarElemento(vet2, linhas, colunas, i, j);
+
+            if (eleVet1 != -999 && eleVet2 != -999){
+                adicionarElemento(vet3, linhas, colunas, i, j, eleVet1 + eleVet2);
+            }
+            
+        }
     }
     
 }
@@ -85,16 +101,16 @@ int main() {
     adicionarElemento(vet2, l, c, 4, 1, 7);
     adicionarElemento(vet2, l, c, 4, 2, 9);
     
-    adicionarElemento(vet, l, c, 3, 8, 13);
-    adicionarElemento(vet, l, c, 7, 3, 22);
-    adicionarElemento(vet, l, c, 7, 7, 14);
+    // adicionarElemento(vet, l, c, 3, 8, 13);
+    // adicionarElemento(vet, l, c, 7, 3, 22);
+    // adicionarElemento(vet, l, c, 7, 7, 14);
     
     mostarMatriz(vet, l, c);
     printf("\n");
     mostarMatriz(vet2, l, c);
 
     printf("\nElemento [4][5]: %d \n", buscarElemento(vet, l, c, 4, 5));
-    printf("%d \n", buscarElemento(vet, l, c, 2, 8));
+    // printf("%d \n", buscarElemento(vet, l, c, 2, 8));
 
     somarMatrizes(vet, vet2, vetR, l, c);
 
