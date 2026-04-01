@@ -31,7 +31,6 @@ void zerarMatriz(int vet[]) {
         for (int j = 1; j < c + 1; j++){
             adicionarElemento(vet, i, j, 0);
         }
-        
     }   
 }
 
