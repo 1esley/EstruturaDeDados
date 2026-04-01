@@ -385,5 +385,6 @@ int main() {
                             0,0,0,0,1};
 
     verificarMatrizInversa(matrizTeste1, matrizTeste2);
+    
     return 0;
 }
