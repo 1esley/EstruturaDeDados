@@ -1,5 +1,7 @@
 ## Estrutura de Dados - IFPB Campus Cajazeiras - 2026.1
 
+---
+
 # Repositório com as atividades realizadas durante a disciplina de Estrutura de Dados.
 
 ### Atividades
@@ -14,6 +16,8 @@
 - `atividade3/`: Contém o código e os arquivos relacionados à Atividade 3.
 - `atividade4/`: Contém o código e os arquivos relacionados à Atividade 4.
 
-### Contribuiçãoes são bem-vindas! Se você deseja contribuir com melhorias ou correções, sinta-se à vontade para abrir issues.
-
+---
+>[!TIP]
+> Contribuiçãoes são bem-vindas! Se você deseja contribuir com melhorias ou correções, sinta-se à vontade para abrir issues.
+---
 ### Autor: Wesley de Oliveira Fernandes | ADS - IFPB Campus Cajazeiras
